@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "env: $1"
+
+docker run -i -t \
+    --rm \
+    -w /root \
+    --link mariadb_$1:mysql \
+    --volumes-from mariadb_$1 \
+    --env-file $1.env \
+    --entrypoint /bin/bash \
+    michaloo/mariadb
+

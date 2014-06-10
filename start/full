@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "env: $1, volume: $2"
+
+docker rm -f mariadb_$1
+
+docker run -d \
+    -p 3306:3306 \
+    --env-file $1.env \
+    --name mariadb_$1 \
+    -v $2:/var/lib/mysql \
+    michaloo/mariadb

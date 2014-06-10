@@ -1,0 +1,19 @@
+#!/bin/bash
+
+
+/app/bin/parse_config mysql
+
+chmod 777 /tmp
+
+if [[ ! -d /var/lib/mysql/mysql ]]; then
+
+    /app/bin/bootstrap
+
+fi;
+
+DOCKER_IP=`ip addr show eth0 | grep -m 1 "inet" | awk '{print $2}' | awk -F '/' '{print $1}'`
+
+/app/bin/post_mysql &
+
+exec /usr/sbin/mysqld --bind-address=${DOCKER_IP}
+# --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib/mysql/plugin --user=mysql --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/run/mysqld/mysqld.sock --port=3306
