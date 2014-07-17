@@ -1,7 +1,0 @@
-#!/bin/bash
-
-/app/bin/parse_config supervisor
-
-mkdir -p /var/log/supervisor/
-
-exec /usr/bin/supervisord
