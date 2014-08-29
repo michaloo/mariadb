@@ -44,3 +44,11 @@ Connect with it in an another container:
 
 `docker run -it  --link mariadb:mysql --env-file .env --entrypoint=/bin/bash michaloo/mariadb /app/bin/connect`
 
+
+# Credits
+
+Following solutions were used in this image:
+
+<https://github.com/orchardup/docker-mysql/blob/master/run>
+<https://github.com/GoogleCloudPlatform/compute-docker-mysql/blob/master/run-mysqld>
+<https://github.com/CenturyLinkLabs/docker-mysql/blob/master/my.cnf>
