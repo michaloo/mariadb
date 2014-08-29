@@ -1,0 +1,16 @@
+#!/bin/bash
+
+HOST=${MYSQL_PORT_3306_TCP_ADDR:="localhost"}
+PORT=${MYSQL_PORT_3306_TCP_PORT:="3306"}
+
+confile=/root/my.conf
+cat << EOF > $confile
+[client]
+port=$PORT
+host=$HOST
+user=$MYSQL_USER
+password=$MYSQL_PASS
+database=$MYSQL_DB
+EOF
+
+mysql --defaults-file=$confile

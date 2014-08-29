@@ -1,0 +1,8 @@
+#!/bin/bash
+
+
+/app/bin/config
+
+/app/bin/pre_mysql
+
+exec /usr/sbin/mysqld

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+
+INNODB_BUFFER_POOL_SIZE_PCT=80
+
+export INNODB_LOG_FILE_SIZE=$((64 * 1024 * 1024))
+export INNODB_BUFFER_POOL_SIZE=$((
+      $(cat /proc/meminfo | grep MemTotal: | awk '{print $2}') * 1024 *
+      ${INNODB_BUFFER_POOL_SIZE_PCT} / 100
+      ))
+
+cat /app/config/my.cnf | templater > /etc/mysql/conf.d/my.cnf
+chmod 664 /etc/mysql/conf.d/my.cnf
